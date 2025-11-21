@@ -1,0 +1,131 @@
+@import 'tailwindcss';
+@import 'aos/dist/aos.css';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --animate-slide-hair-image: slide-hair-image 270s linear infinite;
+  --animate-btn-grow: btn-grow 0.3s ease-in-out;
+  --animate-btn-shrink: btn-shrink 0.3s ease-in-out;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-love-craft: var(--font-love-craft);
+
+  @keyframes btn-grow {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes btn-shrink {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.95);
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+@media (max-width: 359px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+html {
+  scroll-snap-type: y proximity;
+}
+
+section {
+  scroll-snap-align: start;
+}
+
+.hero-section {
+  @apply flex flex-col items-center justify-center min-h-screen p-8;
+
+  background: top center / contain no-repeat url('/assets/images/flowers-top.webp'),
+    bottom center / contain no-repeat url('/assets/images/flowers-bottom.webp'),
+    center / cover no-repeat url('/assets/images/background-mobile.webp');
+
+  @variant lg {
+    background: 0 100% / cover no-repeat url('/assets/images/flowers-top.webp'),
+      0 -60% / cover no-repeat url('/assets/images/flowers-bottom.webp'),
+      center / cover no-repeat url('/assets/images/background.webp');
+  }
+}
+
+.second-section {
+  @apply flex flex-col items-center min-h-screen pt-24 pb-40 px-6 lg:px-52;
+  @apply text-[#730c4d] text-lg lg:text-2xl text-center;
+
+  background: bottom left / max(30%, 350px) no-repeat url('/assets/images/pink-flower.webp'),
+    top right / max(20%, 150px) no-repeat url('/assets/images/yellow-flower.webp'), #edaa1d;
+}
+
+.groovy-container {
+  border: 3px solid transparent;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(45deg, #ff6b6b, #4ecdc4, #feca57) border-box;
+}
+
+.groovy-input {
+  @apply leading-tight px-4 py-2 rounded-lg text-lg;
+  border: 3px solid transparent;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(45deg, #ff6b6b, #4ecdc4, #feca57) border-box;
+  resize: none;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--color-pink-300);
+  }
+}
+
+.groovy-button {
+  background: linear-gradient(45deg, #e56e3f, #cd4eb9);
+  color: var(--color-white);
+  cursor: pointer;
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--tw-leading, var(--text-xl--line-height));
+  width: 100%;
+}
+
+.btn-transition {
+  transition: transform 0.15s ease-in-out;
+  will-change: transform;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+  &:active {
+    transform: scale(0.97);
+  }
+}
